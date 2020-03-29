@@ -103,7 +103,7 @@ simulateOutbreakSEIR = function(R0t,
                                 dateStart = as.Date('2020-02-01'),
                                 POP = wuhanpop,
                                 numWeekStagger=c(2,4,6),
-                                pInfected=0.000002,
+                                pInfected=0.0001,
                                 durInf = 7,
                                 contacts_china=contacts)
 {
@@ -259,7 +259,7 @@ simulateOutbreakSEIcIscR = function(R0t,
                                     dateStart = as.Date('2020-02-01'),
                                     POP = wuhanpop,
                                     numWeekStagger=c(2,4,6),
-                                    pInfected=0.000002,
+                                    pInfected=0.0001,
                                     durInf = 7,
                                     contacts_china=contacts)
 {

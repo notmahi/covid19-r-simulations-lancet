@@ -16,7 +16,7 @@ epi_aprilDurInf3 = vector('list',nsim)
 epi_mayDurInf3 = vector('list',nsim)
 start = Sys.time()
 durInfSim = 3
-initialI = 0.000002
+initialI = 0.0001
 for(sim in 1:nsim)
 {
   epi_doNothingDurInf3[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateStartSchoolClosure = as.Date('2020-02-01'),
@@ -78,7 +78,7 @@ epi_aprilDurInf7 = vector('list',nsim)
 epi_mayDurInf7 = vector('list',nsim)
 start = Sys.time()
 durInfSim = 7
-initialI = 0.000002
+initialI = 0.0001
 for(sim in 1:nsim)
 {
   epi_doNothingDurInf7[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateStartSchoolClosure = as.Date('2020-02-01'),
@@ -151,146 +151,146 @@ rm(epi_doNothingDurInf3,epi_baseDurInf3,epi_aprilDurInf3,epi_mayDurInf3)
 rm(epi_doNothingDurInf7,epi_baseDurInf7,epi_aprilDurInf7,epi_mayDurInf7)
 
 
-## To simulate n_simSEIR outbreaks: duration of infection = 3 days, initial infected  n=~2000 infected
-epi_doNothingDurInf3I2000 = vector('list',nsim)
-epi_baseDurInf3I2000 = vector('list',nsim)
-epi_aprilDurInf3I2000 = vector('list',nsim)
-epi_mayDurInf3I2000 = vector('list',nsim)
-start = Sys.time()
-durInfSim = 3
-initialI = 0.002
-for(sim in 1:nsim)
-{
-  epi_doNothingDurInf3I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateStartSchoolClosure = as.Date('2020-02-01'),
-                                                     dateStartIntenseIntervention = as.Date('2020-02-01'), dateEndIntenseIntervention = as.Date('2020-02-01'),
-                                                     pWorkOpen = c(1,1,1,1),numWeekStagger = c(0,0,0),pInfected=initialI,durInf = durInfSim)
-  epi_baseDurInf3I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-04-04'),pWorkOpen = c(0.1,0.75,1,1),
-                                                     numWeekStagger = c(10/7,10/7,10/7),pInfected=initialI,durInf = durInfSim)
-  epi_aprilDurInf3I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-03-26'),
-                                                 pInfected=initialI,durInf = durInfSim)
-  epi_mayDurInf3I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-05-26'),
-                                                 pInfected=initialI,durInf = durInfSim)
-  if(sim%%10==0) print(paste0('Done with simulation ',sim))
-}
-end = Sys.time()
-print(end-start)
+# ## To simulate n_simSEIR outbreaks: duration of infection = 3 days, initial infected  n=~2000 infected
+# epi_doNothingDurInf3I2000 = vector('list',nsim)
+# epi_baseDurInf3I2000 = vector('list',nsim)
+# epi_aprilDurInf3I2000 = vector('list',nsim)
+# epi_mayDurInf3I2000 = vector('list',nsim)
+# start = Sys.time()
+# durInfSim = 3
+# initialI = 0.002
+# for(sim in 1:nsim)
+# {
+#   epi_doNothingDurInf3I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateStartSchoolClosure = as.Date('2020-02-01'),
+#                                                      dateStartIntenseIntervention = as.Date('2020-02-01'), dateEndIntenseIntervention = as.Date('2020-02-01'),
+#                                                      pWorkOpen = c(1,1,1,1),numWeekStagger = c(0,0,0),pInfected=initialI,durInf = durInfSim)
+#   epi_baseDurInf3I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-04-04'),pWorkOpen = c(0.1,0.75,1,1),
+#                                                      numWeekStagger = c(10/7,10/7,10/7),pInfected=initialI,durInf = durInfSim)
+#   epi_aprilDurInf3I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-03-26'),
+#                                                  pInfected=initialI,durInf = durInfSim)
+#   epi_mayDurInf3I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-05-26'),
+#                                                  pInfected=initialI,durInf = durInfSim)
+#   if(sim%%10==0) print(paste0('Done with simulation ',sim))
+# }
+# end = Sys.time()
+# print(end-start)
 
-covid_SDurInf3I2000 = list() 
-covid_SDurInf3I2000[[1]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_doNothingDurInf3I2000)
-covid_SDurInf3I2000[[2]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_baseDurInf3I2000)
-covid_SDurInf3I2000[[3]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_aprilDurInf3I2000)
-covid_SDurInf3I2000[[4]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_mayDurInf3I2000)
+# covid_SDurInf3I2000 = list() 
+# covid_SDurInf3I2000[[1]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_doNothingDurInf3I2000)
+# covid_SDurInf3I2000[[2]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_baseDurInf3I2000)
+# covid_SDurInf3I2000[[3]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_aprilDurInf3I2000)
+# covid_SDurInf3I2000[[4]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_mayDurInf3I2000)
 
-covid_IDurInf3I2000 = list() 
-covid_IDurInf3I2000[[1]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_doNothingDurInf3I2000)
-covid_IDurInf3I2000[[2]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_baseDurInf3I2000)
-covid_IDurInf3I2000[[3]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_aprilDurInf3I2000)
-covid_IDurInf3I2000[[4]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_mayDurInf3I2000)
+# covid_IDurInf3I2000 = list() 
+# covid_IDurInf3I2000[[1]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_doNothingDurInf3I2000)
+# covid_IDurInf3I2000[[2]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_baseDurInf3I2000)
+# covid_IDurInf3I2000[[3]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_aprilDurInf3I2000)
+# covid_IDurInf3I2000[[4]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_mayDurInf3I2000)
 
-peaktime_DurInf3I2000 = list()
-peaktime_DurInf3I2000[[1]] = summarisePeakTimePeakSize(SIMS = epi_doNothingDurInf3I2000)
-peaktime_DurInf3I2000[[2]] = summarisePeakTimePeakSize(SIMS = epi_baseDurInf3I2000)
-peaktime_DurInf3I2000[[3]] = summarisePeakTimePeakSize(SIMS = epi_aprilDurInf3I2000)
-peaktime_DurInf3I2000[[4]] = summarisePeakTimePeakSize(SIMS = epi_mayDurInf3I2000)
+# peaktime_DurInf3I2000 = list()
+# peaktime_DurInf3I2000[[1]] = summarisePeakTimePeakSize(SIMS = epi_doNothingDurInf3I2000)
+# peaktime_DurInf3I2000[[2]] = summarisePeakTimePeakSize(SIMS = epi_baseDurInf3I2000)
+# peaktime_DurInf3I2000[[3]] = summarisePeakTimePeakSize(SIMS = epi_aprilDurInf3I2000)
+# peaktime_DurInf3I2000[[4]] = summarisePeakTimePeakSize(SIMS = epi_mayDurInf3I2000)
 
-covid_DurInf3I2000 = list() 
-covid_DurInf3I2000[[1]] = summariseSimulations_mid(CI = 50,SIMS = epi_doNothingDurInf3I2000)
-covid_DurInf3I2000[[2]] = summariseSimulations_mid(CI = 50,SIMS = epi_baseDurInf3I2000)
-covid_DurInf3I2000[[3]] = summariseSimulations_mid(CI = 50,SIMS = epi_aprilDurInf3I2000)
-covid_DurInf3I2000[[4]] = summariseSimulations_mid(CI = 50,SIMS = epi_mayDurInf3I2000)
+# covid_DurInf3I2000 = list() 
+# covid_DurInf3I2000[[1]] = summariseSimulations_mid(CI = 50,SIMS = epi_doNothingDurInf3I2000)
+# covid_DurInf3I2000[[2]] = summariseSimulations_mid(CI = 50,SIMS = epi_baseDurInf3I2000)
+# covid_DurInf3I2000[[3]] = summariseSimulations_mid(CI = 50,SIMS = epi_aprilDurInf3I2000)
+# covid_DurInf3I2000[[4]] = summariseSimulations_mid(CI = 50,SIMS = epi_mayDurInf3I2000)
 
-AGEcovid_IDurInf3I2000  = list()
-AGEcovid_IDurInf3I2000[[1]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_doNothingDurInf3I2000)
-AGEcovid_IDurInf3I2000[[2]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_baseDurInf3I2000)
-AGEcovid_IDurInf3I2000[[3]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_aprilDurInf3I2000)
-AGEcovid_IDurInf3I2000[[4]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_mayDurInf3I2000)
+# AGEcovid_IDurInf3I2000  = list()
+# AGEcovid_IDurInf3I2000[[1]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_doNothingDurInf3I2000)
+# AGEcovid_IDurInf3I2000[[2]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_baseDurInf3I2000)
+# AGEcovid_IDurInf3I2000[[3]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_aprilDurInf3I2000)
+# AGEcovid_IDurInf3I2000[[4]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_mayDurInf3I2000)
 
-epiFirstSimDurInf3I2000  = list(epi_doNothingDurInf3I2000 = epi_doNothingDurInf3I2000[[1]],
-                          epi_baseDurInf3I2000= epi_baseDurInf3I2000[[1]],
-                          epi_aprilDurInf3I2000 = epi_aprilDurInf3I2000[[1]],
-                          epi_mayDurInf3I2000 = epi_mayDurInf3I2000[[1]])
+# epiFirstSimDurInf3I2000  = list(epi_doNothingDurInf3I2000 = epi_doNothingDurInf3I2000[[1]],
+#                           epi_baseDurInf3I2000= epi_baseDurInf3I2000[[1]],
+#                           epi_aprilDurInf3I2000 = epi_aprilDurInf3I2000[[1]],
+#                           epi_mayDurInf3I2000 = epi_mayDurInf3I2000[[1]])
 
 
 
-## To simulate n_simSEIR outbreaks: duration of infection = 7 days, initial infected  n=~2000 infected
+# ## To simulate n_simSEIR outbreaks: duration of infection = 7 days, initial infected  n=~2000 infected
 
-epi_doNothingDurInf7I2000 = vector('list',nsim)
-epi_baseDurInf7I2000 = vector('list',nsim)
-epi_aprilDurInf7I2000 = vector('list',nsim)
-epi_mayDurInf7I2000 = vector('list',nsim)
-start = Sys.time()
-durInfSim = 7
-initialI = 0.002
-for(sim in 1:nsim)
-{
-  epi_doNothingDurInf7I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateStartSchoolClosure = as.Date('2020-02-01'),
-                                                          dateStartIntenseIntervention = as.Date('2020-02-01'), dateEndIntenseIntervention = as.Date('2020-02-01'),
-                                                          pWorkOpen = c(1,1,1,1),numWeekStagger = c(0,0,0),pInfected=initialI,durInf = durInfSim)
-  epi_baseDurInf7I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-04-04'),pWorkOpen = c(0.1,0.75,1,1),
-                                                     numWeekStagger = c(10/7,10/7,10/7),pInfected=initialI,durInf = durInfSim)
-  epi_aprilDurInf7I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-03-26'),
-                                                      pInfected=initialI,durInf = durInfSim)
-  epi_mayDurInf7I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-05-26'),
-                                                      pInfected=initialI,durInf = durInfSim)
-  if(sim%%10==0) print(paste0('Done with simulation ',sim))
-}
-end = Sys.time()
-print(end-start)
+# epi_doNothingDurInf7I2000 = vector('list',nsim)
+# epi_baseDurInf7I2000 = vector('list',nsim)
+# epi_aprilDurInf7I2000 = vector('list',nsim)
+# epi_mayDurInf7I2000 = vector('list',nsim)
+# start = Sys.time()
+# durInfSim = 7
+# initialI = 0.002
+# for(sim in 1:nsim)
+# {
+#   epi_doNothingDurInf7I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateStartSchoolClosure = as.Date('2020-02-01'),
+#                                                           dateStartIntenseIntervention = as.Date('2020-02-01'), dateEndIntenseIntervention = as.Date('2020-02-01'),
+#                                                           pWorkOpen = c(1,1,1,1),numWeekStagger = c(0,0,0),pInfected=initialI,durInf = durInfSim)
+#   epi_baseDurInf7I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-04-04'),pWorkOpen = c(0.1,0.75,1,1),
+#                                                      numWeekStagger = c(10/7,10/7,10/7),pInfected=initialI,durInf = durInfSim)
+#   epi_aprilDurInf7I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-03-26'),
+#                                                       pInfected=initialI,durInf = durInfSim)
+#   epi_mayDurInf7I2000[[sim]] = simulateOutbreakSEIR(R0t =R0est[sim] ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-05-26'),
+#                                                       pInfected=initialI,durInf = durInfSim)
+#   if(sim%%10==0) print(paste0('Done with simulation ',sim))
+# }
+# end = Sys.time()
+# print(end-start)
 
-covid_SDurInf7I2000 = list() 
-covid_SDurInf7I2000[[1]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_doNothingDurInf7I2000)
-covid_SDurInf7I2000[[2]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_baseDurInf7I2000)
-covid_SDurInf7I2000[[3]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_aprilDurInf7I2000)
-covid_SDurInf7I2000[[4]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_mayDurInf7I2000)
+# covid_SDurInf7I2000 = list() 
+# covid_SDurInf7I2000[[1]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_doNothingDurInf7I2000)
+# covid_SDurInf7I2000[[2]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_baseDurInf7I2000)
+# covid_SDurInf7I2000[[3]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_aprilDurInf7I2000)
+# covid_SDurInf7I2000[[4]] = summariseSimulations(VAR = 'S',CI = 50,SIMS = epi_mayDurInf7I2000)
 
-covid_IDurInf7I2000 = list() 
-covid_IDurInf7I2000[[1]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_doNothingDurInf7I2000)
-covid_IDurInf7I2000[[2]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_baseDurInf7I2000)
-covid_IDurInf7I2000[[3]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_aprilDurInf7I2000)
-covid_IDurInf7I2000[[4]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_mayDurInf7I2000)
+# covid_IDurInf7I2000 = list() 
+# covid_IDurInf7I2000[[1]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_doNothingDurInf7I2000)
+# covid_IDurInf7I2000[[2]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_baseDurInf7I2000)
+# covid_IDurInf7I2000[[3]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_aprilDurInf7I2000)
+# covid_IDurInf7I2000[[4]] = summariseSimulations(VAR = 'incidence',CI = 50,SIMS = epi_mayDurInf7I2000)
 
-peaktime_DurInf7I2000 = list()
-peaktime_DurInf7I2000[[1]] = summarisePeakTimePeakSize(SIMS = epi_doNothingDurInf7I2000)
-peaktime_DurInf7I2000[[2]] = summarisePeakTimePeakSize(SIMS = epi_baseDurInf7I2000)
-peaktime_DurInf7I2000[[3]] = summarisePeakTimePeakSize(SIMS = epi_aprilDurInf7I2000)
-peaktime_DurInf7I2000[[4]] = summarisePeakTimePeakSize(SIMS = epi_mayDurInf7I2000)
+# peaktime_DurInf7I2000 = list()
+# peaktime_DurInf7I2000[[1]] = summarisePeakTimePeakSize(SIMS = epi_doNothingDurInf7I2000)
+# peaktime_DurInf7I2000[[2]] = summarisePeakTimePeakSize(SIMS = epi_baseDurInf7I2000)
+# peaktime_DurInf7I2000[[3]] = summarisePeakTimePeakSize(SIMS = epi_aprilDurInf7I2000)
+# peaktime_DurInf7I2000[[4]] = summarisePeakTimePeakSize(SIMS = epi_mayDurInf7I2000)
 
-covid_DurInf7I2000 = list() 
-covid_DurInf7I2000[[1]] = summariseSimulations_mid(CI = 50,SIMS = epi_doNothingDurInf7I2000)
-covid_DurInf7I2000[[2]] = summariseSimulations_mid(CI = 50,SIMS = epi_baseDurInf7I2000)
-covid_DurInf7I2000[[3]] = summariseSimulations_mid(CI = 50,SIMS = epi_aprilDurInf7I2000)
-covid_DurInf7I2000[[4]] = summariseSimulations_mid(CI = 50,SIMS = epi_mayDurInf7I2000)
+# covid_DurInf7I2000 = list() 
+# covid_DurInf7I2000[[1]] = summariseSimulations_mid(CI = 50,SIMS = epi_doNothingDurInf7I2000)
+# covid_DurInf7I2000[[2]] = summariseSimulations_mid(CI = 50,SIMS = epi_baseDurInf7I2000)
+# covid_DurInf7I2000[[3]] = summariseSimulations_mid(CI = 50,SIMS = epi_aprilDurInf7I2000)
+# covid_DurInf7I2000[[4]] = summariseSimulations_mid(CI = 50,SIMS = epi_mayDurInf7I2000)
 
-AGEcovid_IDurInf7I2000  = list()
-AGEcovid_IDurInf7I2000[[1]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_doNothingDurInf7I2000)
-AGEcovid_IDurInf7I2000[[2]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_baseDurInf7I2000)
-AGEcovid_IDurInf7I2000[[3]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_aprilDurInf7I2000)
-AGEcovid_IDurInf7I2000[[4]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_mayDurInf7I2000)
+# AGEcovid_IDurInf7I2000  = list()
+# AGEcovid_IDurInf7I2000[[1]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_doNothingDurInf7I2000)
+# AGEcovid_IDurInf7I2000[[2]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_baseDurInf7I2000)
+# AGEcovid_IDurInf7I2000[[3]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_aprilDurInf7I2000)
+# AGEcovid_IDurInf7I2000[[4]] = summariseSimulationsAGE(VAR = 'incidence',CI = 50,SIMS = epi_mayDurInf7I2000)
 
-epiFirstSimDurInf7I2000  = list(epi_doNothingDurInf7I2000 = epi_doNothingDurInf7I2000[[1]],
-                                epi_baseDurInf7I2000= epi_baseDurInf7I2000[[1]],
-                                epi_aprilDurInf7I2000 = epi_aprilDurInf7I2000[[1]],
-                                epi_mayDurInf7I2000 = epi_mayDurInf7I2000[[1]])
+# epiFirstSimDurInf7I2000  = list(epi_doNothingDurInf7I2000 = epi_doNothingDurInf7I2000[[1]],
+#                                 epi_baseDurInf7I2000= epi_baseDurInf7I2000[[1]],
+#                                 epi_aprilDurInf7I2000 = epi_aprilDurInf7I2000[[1]],
+#                                 epi_mayDurInf7I2000 = epi_mayDurInf7I2000[[1]])
 
-save(covid_IDurInf3I2000,file = 'outputs/SEIR/covid_IDurInf3I2000.rdata')
-save(covid_SDurInf3I2000,file = 'outputs/SEIR/covid_SDurInf3I2000.rdata')
-save(covid_IDurInf7I2000,file = 'outputs/SEIR/covid_IDurInf7I2000.rdata')
-save(covid_SDurInf7I2000,file = 'outputs/SEIR/covid_SDurInf7I2000.rdata')
+# save(covid_IDurInf3I2000,file = 'outputs/SEIR/covid_IDurInf3I2000.rdata')
+# save(covid_SDurInf3I2000,file = 'outputs/SEIR/covid_SDurInf3I2000.rdata')
+# save(covid_IDurInf7I2000,file = 'outputs/SEIR/covid_IDurInf7I2000.rdata')
+# save(covid_SDurInf7I2000,file = 'outputs/SEIR/covid_SDurInf7I2000.rdata')
 
-save(peaktime_DurInf3I2000,file = 'outputs/SEIR/peaktime_DurInf3I2000.rdata')
-save(peaktime_DurInf7I2000,file = 'outputs/SEIR/peaktime_DurInf7I2000.rdata')
+# save(peaktime_DurInf3I2000,file = 'outputs/SEIR/peaktime_DurInf3I2000.rdata')
+# save(peaktime_DurInf7I2000,file = 'outputs/SEIR/peaktime_DurInf7I2000.rdata')
 
-save(covid_DurInf3I2000,file ='outputs/SEIR/covid_DurInf3I2000.rdata')
-save(covid_DurInf7I2000,file ='outputs/SEIR/covid_DurInf7I2000.rdata')
+# save(covid_DurInf3I2000,file ='outputs/SEIR/covid_DurInf3I2000.rdata')
+# save(covid_DurInf7I2000,file ='outputs/SEIR/covid_DurInf7I2000.rdata')
 
-save(AGEcovid_IDurInf3I2000,file ='outputs/SEIR/AGEcovid_IDurInf3I2000.rdata')
-save(AGEcovid_IDurInf7I2000,file ='outputs/SEIR/AGEcovid_IDurInf7I2000.rdata')
+# save(AGEcovid_IDurInf3I2000,file ='outputs/SEIR/AGEcovid_IDurInf3I2000.rdata')
+# save(AGEcovid_IDurInf7I2000,file ='outputs/SEIR/AGEcovid_IDurInf7I2000.rdata')
 
-save(epiFirstSimDurInf3I2000,file ='outputs/SEIR/epiFirstSimDurInf3I2000.rdata')
-save(epiFirstSimDurInf7I2000,file ='outputs/SEIR/epiFirstSimDurInf7I2000.rdata')
+# save(epiFirstSimDurInf3I2000,file ='outputs/SEIR/epiFirstSimDurInf3I2000.rdata')
+# save(epiFirstSimDurInf7I2000,file ='outputs/SEIR/epiFirstSimDurInf7I2000.rdata')
 
-rm(epi_doNothingDurInf3I2000,epi_baseDurInf3I2000,epi_aprilDurInf3I2000,epi_mayDurInf3I2000)
-rm(epi_doNothingDurInf7I2000,epi_baseDurInf7I2000,epi_aprilDurInf7I2000,epi_mayDurInf7I2000)
+# rm(epi_doNothingDurInf3I2000,epi_baseDurInf3I2000,epi_aprilDurInf3I2000,epi_mayDurInf3I2000)
+# rm(epi_doNothingDurInf7I2000,epi_baseDurInf7I2000,epi_aprilDurInf7I2000,epi_mayDurInf7I2000)
 
 
 
