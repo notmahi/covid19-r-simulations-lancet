@@ -93,11 +93,19 @@ getbeta = function(R0t,constraints,gamma,p_age,calculate_transmission_probabilit
 
 
 # Children as infectious and as susceptible 
-simulateOutbreakSEIR = function(R0t,rho, R0tpostoutbreak = 1.5,dateEndIntenseIntervention, #date we begin relaxing intense intervention 
-                            pWorkOpen = c(0.1,0.25,0.5,0.9), # pWorkOpen: proportion of the work force that is working (will be time-varying)
-                            dateStartSchoolClosure = as.Date('2020-01-15') , # cause winter term break 
-                            dateStartIntenseIntervention = as.Date('2020-01-23') , #Intense intervention: starts at Wuhan Lockdown
-                            dateStart = as.Date('2019-11-01'),POP = wuhanpop,numWeekStagger=c(2,4,6),pInfected=0.0002,durInf = 7,contacts_china=contacts)
+simulateOutbreakSEIR = function(R0t,
+                                rho, 
+                                R0tpostoutbreak = 1.5,
+                                dateEndIntenseIntervention, #date we begin relaxing intense intervention 
+                                pWorkOpen = c(0.1,0.25,0.5,0.9), # pWorkOpen: proportion of the work force that is working (will be time-varying)
+                                dateStartSchoolClosure = as.Date('2020-01-15') , # cause winter term break 
+                                dateStartIntenseIntervention = as.Date('2020-01-23') , #Intense intervention: starts at Wuhan Lockdown
+                                dateStart = as.Date('2019-11-01'),
+                                POP = wuhanpop,
+                                numWeekStagger=c(2,4,6),
+                                pInfected=0.0002,
+                                durInf = 7,
+                                contacts_china=contacts)
 {
   # debug dateStartIntenseIntervention = as.Date('2020-01-23')  
   # debug dateEndIntenseIntervention = as.Date('2020-03-01')
@@ -241,11 +249,19 @@ simulateOutbreakSEIR = function(R0t,rho, R0tpostoutbreak = 1.5,dateEndIntenseInt
 }
 
 # Children less infectious and as susceptible 
-simulateOutbreakSEIcIscR = function(R0t,rho=c(rep(0.4,4),rep(0.8,12)), R0tpostoutbreak = 1.5,dateEndIntenseIntervention, #date we begin relaxing intense intervention 
+simulateOutbreakSEIcIscR = function(R0t,
+                                    rho=c(rep(0.4,4),rep(0.8,12)), 
+                                    R0tpostoutbreak = 1.5,
+                                    dateEndIntenseIntervention, #date we begin relaxing intense intervention 
                                     pWorkOpen = c(0.1,0.25,0.5,0.9), # pWorkOpen: proportion of the work force that is working (will be time-varying)
                                     dateStartSchoolClosure = as.Date('2020-01-15') , # cause winter term break 
                                     dateStartIntenseIntervention = as.Date('2020-01-23') , #Intense intervention: starts at Wuhan Lockdown
-                                    dateStart = as.Date('2019-11-01'),POP = wuhanpop,numWeekStagger=c(2,4,6),pInfected=0.0002,durInf = 7,contacts_china=contacts)
+                                    dateStart = as.Date('2019-11-01'),
+                                    POP = wuhanpop,
+                                    numWeekStagger=c(2,4,6),
+                                    pInfected=0.0002,
+                                    durInf = 7,
+                                    contacts_china=contacts)
 {
   # debug dateStartIntenseIntervention = as.Date('2020-01-23')  
   # debug dateEndIntenseIntervention = as.Date('2020-03-01')
