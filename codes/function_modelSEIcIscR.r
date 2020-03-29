@@ -98,17 +98,17 @@ simulateOutbreakSEIR = function(R0t,
                                 R0tpostoutbreak = 1.5,
                                 dateEndIntenseIntervention, #date we begin relaxing intense intervention 
                                 pWorkOpen = c(0.1,0.25,0.5,0.9), # pWorkOpen: proportion of the work force that is working (will be time-varying)
-                                dateStartSchoolClosure = as.Date('2020-01-15') , # cause winter term break 
-                                dateStartIntenseIntervention = as.Date('2020-01-23') , #Intense intervention: starts at Wuhan Lockdown
-                                dateStart = as.Date('2019-11-01'),
+                                dateStartSchoolClosure = as.Date('2020-03-17') , # cause winter term break 
+                                dateStartIntenseIntervention = as.Date('2020-03-26') , #Intense intervention: starts at Wuhan Lockdown
+                                dateStart = as.Date('2020-02-01'),
                                 POP = wuhanpop,
                                 numWeekStagger=c(2,4,6),
-                                pInfected=0.0002,
+                                pInfected=0.000002,
                                 durInf = 7,
                                 contacts_china=contacts)
 {
-  # debug dateStartIntenseIntervention = as.Date('2020-01-23')  
-  # debug dateEndIntenseIntervention = as.Date('2020-03-01')
+  # debug dateStartIntenseIntervention = as.Date('2020-03-26')  
+  # debug dateEndIntenseIntervention = as.Date('2020-03-26')
   # debug R0est = rep(2,3660) 
   # debug rho = rep(0.8,3660) 
   # debug pWorkOpen =  c(0.1,0.25,0.5,1)
@@ -134,7 +134,7 @@ simulateOutbreakSEIR = function(R0t,
   # dateStart = as.Date('2019-12-01')                            # included as a function argument 
   dateEnd = dateStart+(tmax-1)
   dateStartCNY = as.Date('2020-01-25') 
-  dateEndCNY = as.Date('2020-01-31') 
+  dateEndCNY = as.Date('2020-04-04') 
   
   # Declare the state variables and related variables:
   # The values of these variables change over time
@@ -254,17 +254,17 @@ simulateOutbreakSEIcIscR = function(R0t,
                                     R0tpostoutbreak = 1.5,
                                     dateEndIntenseIntervention, #date we begin relaxing intense intervention 
                                     pWorkOpen = c(0.1,0.25,0.5,0.9), # pWorkOpen: proportion of the work force that is working (will be time-varying)
-                                    dateStartSchoolClosure = as.Date('2020-01-15') , # cause winter term break 
-                                    dateStartIntenseIntervention = as.Date('2020-01-23') , #Intense intervention: starts at Wuhan Lockdown
-                                    dateStart = as.Date('2019-11-01'),
+                                    dateStartSchoolClosure = as.Date('2020-03-17') , # cause winter term break 
+                                    dateStartIntenseIntervention = as.Date('2020-03-26') , #Intense intervention: starts at Wuhan Lockdown
+                                    dateStart = as.Date('2020-02-01'),
                                     POP = wuhanpop,
                                     numWeekStagger=c(2,4,6),
-                                    pInfected=0.0002,
+                                    pInfected=0.000002,
                                     durInf = 7,
                                     contacts_china=contacts)
 {
-  # debug dateStartIntenseIntervention = as.Date('2020-01-23')  
-  # debug dateEndIntenseIntervention = as.Date('2020-03-01')
+  # debug dateStartIntenseIntervention = as.Date('2020-03-26')  
+  # debug dateEndIntenseIntervention = as.Date('2020-03-26')
   # debug R0est = rep(2,3660) 
   # debug rho = rep(0.8,3660) 
   # debug pWorkOpen =  c(0.1,0.25,0.5,1)
@@ -290,7 +290,7 @@ simulateOutbreakSEIcIscR = function(R0t,
   # dateStart = as.Date('2019-12-01')                            # included as a function argument 
   dateEnd = dateStart+(tmax-1)
   dateStartCNY = as.Date('2020-01-25') 
-  dateEndCNY = as.Date('2020-01-31') 
+  dateEndCNY = as.Date('2020-04-04') 
   
   # Declare the state variables and related variables:
   # The values of these variables change over time
@@ -430,16 +430,16 @@ if(CHECKMODEL)
                                                     pWorkOpen = c(1,1,1,1),numWeekStagger = c(0,0,0,0),durInf = 7)
     epi_base[[sim]] = simulateOutbreakSEIR(R0t =R0est ,rho = rep(0.5,3660),dateEndIntenseIntervention = as.Date('2020-01-27'),
                                                pWorkOpen = c(0.5,1,1,1),numWeekStagger = c(0,0,0,0),durInf = 7)
-    epi_march[[sim]] = simulateOutbreakSEIR(R0t =R0est,rho = rep(0.5,3660), dateEndIntenseIntervention = as.Date('2020-03-01'),durInf = 7)
-    epi_april[[sim]] = simulateOutbreakSEIR(R0t =R0est,rho = rep(0.5,3660), dateEndIntenseIntervention = as.Date('2020-04-01'),durInf = 7)
+    epi_march[[sim]] = simulateOutbreakSEIR(R0t =R0est,rho = rep(0.5,3660), dateEndIntenseIntervention = as.Date('2020-03-26'),durInf = 7)
+    epi_april[[sim]] = simulateOutbreakSEIR(R0t =R0est,rho = rep(0.5,3660), dateEndIntenseIntervention = as.Date('2020-05-26'),durInf = 7)
     # epi_doNothing[[sim]] = simulateOutbreakSEIcIscR(R0t =R0est,dateStartSchoolClosure = as.Date('2019-12-01'),
     #                                                 dateStartIntenseIntervention =as.Date('2019-12-01'),
     #                                                 dateEndIntenseIntervention = as.Date('2019-12-01'),
     #                                                 pWorkOpen = c(1,1,1,1),numWeekStagger = c(0,0,0,0),durInf = 14)
     # epi_base[[sim]] = simulateOutbreakSEIcIscR(R0t =R0est ,dateEndIntenseIntervention = as.Date('2020-01-27'),
     #                                            pWorkOpen = c(0.5,1,1,1),numWeekStagger = c(0,0,0,0),durInf = 14)
-    # epi_march[[sim]] = simulateOutbreakSEIcIscR(R0t =R0est, dateEndIntenseIntervention = as.Date('2020-03-01'),durInf = 14)
-    # epi_april[[sim]] = simulateOutbreakSEIcIscR(R0t =R0est, dateEndIntenseIntervention = as.Date('2020-04-01'),durInf = 14)
+    # epi_march[[sim]] = simulateOutbreakSEIcIscR(R0t =R0est, dateEndIntenseIntervention = as.Date('2020-03-26'),durInf = 14)
+    # epi_april[[sim]] = simulateOutbreakSEIcIscR(R0t =R0est, dateEndIntenseIntervention = as.Date('2020-05-26'),durInf = 14)
   }
   par(mfrow=c(2,1))
   

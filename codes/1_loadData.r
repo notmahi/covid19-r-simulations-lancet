@@ -15,7 +15,7 @@ loadR0posterior =TRUE
 # 1) population data
 if(loadPopData) 
 { 
-  wuhanpop = read.csv('data/wuhanpop.csv',as.is = TRUE)
+  wuhanpop = read.csv('data/bdpop.csv',as.is = TRUE)
 }
 
 # 2) (projected) contact matrices 
