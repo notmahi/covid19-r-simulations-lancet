@@ -135,14 +135,38 @@ save(covid_SDurInf3,file = 'outputs/SEIR/covid_SDurInf3.rdata')
 save(covid_IDurInf7,file = 'outputs/SEIR/covid_IDurInf7.rdata')
 save(covid_SDurInf7,file = 'outputs/SEIR/covid_SDurInf7.rdata')
 
+# Save as JSON
+sink('outputs/SEIR/covid_IDurInf3.json')
+cat(toJSON(covid_IDurInf3))
+sink('outputs/SEIR/covid_SDurInf3.json')
+cat(toJSON(covid_SDurInf3))
+sink('outputs/SEIR/covid_IDurInf7.json')
+cat(toJSON(covid_IDurInf7))
+sink('outputs/SEIR/covid_SDurInf7.json')
+cat(toJSON(covid_SDurInf7))
+
 save(peaktime_DurInf3,file = 'outputs/SEIR/peaktime_DurInf3.rdata')
 save(peaktime_DurInf7,file = 'outputs/SEIR/peaktime_DurInf7.rdata')
+sink('outputs/SEIR/peaktime_DurInf3.json')
+cat(toJSON(peaktime_DurInf3))
+sink('outputs/SEIR/peaktime_DurInf7.json')
+cat(toJSON(peaktime_DurInf7))
+
 
 save(covid_DurInf3,file ='outputs/SEIR/covid_DurInf3.rdata')
 save(covid_DurInf7,file ='outputs/SEIR/covid_DurInf7.rdata')
+sink('outputs/SEIR/covid_DurInf3.json')
+cat(toJSON(covid_DurInf3))
+sink('outputs/SEIR/covid_DurInf7.json')
+cat(toJSON(covid_DurInf7))
 
 save(AGEcovid_IDurInf3,file ='outputs/SEIR/AGEcovid_IDurInf3.rdata')
 save(AGEcovid_IDurInf7,file ='outputs/SEIR/AGEcovid_IDurInf7.rdata')
+sink('outputs/SEIR/AGEcovid_IDurInf3.json')
+cat(toJSON(AGEcovid_IDurInf3))
+sink('outputs/SEIR/AGEcovid_IDurInf7.json')
+cat(toJSON(AGEcovid_IDurInf7))
+sink()
 
 save(epiFirstSimDurInf3,file ='outputs/SEIR/epiFirstSimDurInf3.rdata')
 save(epiFirstSimDurInf7,file ='outputs/SEIR/epiFirstSimDurInf7.rdata')

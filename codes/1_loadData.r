@@ -1,6 +1,7 @@
 require(data.table)
 require(Matrix)
 require(matrixcalc)
+require(rjson)
 
 ## load data: Wuhan's population age structure and Contact matrices
 
